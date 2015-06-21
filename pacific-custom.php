@@ -49,6 +49,19 @@ function pacific_filter_wp_title( $title, $sep ) {
 			$activity = 'Camping ';
 		}
 	}
-	return $activity . $title;
+
+	// Determine Park Location
+	$location = '';
+	if( is_singular() ) {
+		if( in_category( 'las-trampas' ) )  {
+			$location = ' at Las Trampas ';
+		} elseif( in_category( 'henry-w-coe' ) ) {
+			$location = ' at Henry W. Coe ';
+		} elseif( in_category( 'mount-diable' ) ) {
+			$location = ' at Mount Diablo ';
+		}
+	}
+
+	return $activity . $title . $location;
 }
 add_filter( 'wp_title', 'pacific_filter_wp_title', 10, 2 );
