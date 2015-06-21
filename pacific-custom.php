@@ -12,18 +12,18 @@ Domain Path: /languages
 
 /*
 array(2) {
-  ["page-templates/contributors.php"]=>
-  string(16) "Contributor Page"
-  ["page-templates/full-width.php"]=>
-  &string(15) "Full Width Page"
+	["page-templates/contributors.php"]=>
+	string(16) "Contributor Page"
+	["page-templates/full-width.php"]=>
+	&string(15) "Full Width Page"
 }
 array(3) {
-  ["page-templates/contributors.php"]=>
-  string(16) "Contributor Page"
-  ["page-templates/full-width.php"]=>
-  &string(15) "Full Width Page"
-  ["page-magic-widgets.php"]=>
-  string(13) "Magic Widgets"
+	["page-templates/contributors.php"]=>
+	string(16) "Contributor Page"
+	["page-templates/full-width.php"]=>
+	&string(15) "Full Width Page"
+	["page-magic-widgets.php"]=>
+	string(13) "Magic Widgets"
 }
 */
 
@@ -37,6 +37,18 @@ function pacific_filter_wp_title( $title, $sep ) {
 	if( is_home() || is_front_page() ) {
 		return $title;
 	}
-	return 'Hiking ' . $title;
+
+	// Determine activity
+	$activity = '';
+	if( is_singular() ) {
+		if( in_category( 'backpacking' ) )  {
+			$activity = 'Backpacking ';
+		} elseif( in_category( 'hiking' ) ) {
+			$activity = 'Hiking ';
+		} elseif( in_category( 'camping' ) ) {
+			$activity = 'Camping ';
+		}
+	}
+	return $activity . $title;
 }
 add_filter( 'wp_title', 'pacific_filter_wp_title', 10, 2 );
