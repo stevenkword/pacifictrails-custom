@@ -62,6 +62,6 @@ function pacific_filter_wp_title( $title, $sep ) {
 		}
 	}
 
-	return $activity . $location . $title .
+	return $activity . $location . $title;
 }
 add_filter( 'wp_title', 'pacific_filter_wp_title', 10, 2 );
