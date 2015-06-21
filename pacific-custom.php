@@ -52,6 +52,7 @@ function pacific_filter_wp_title( $title, $sep ) {
 
 	// Determine Park Location
 	$location = '';
+	/*
 	if( is_singular() ) {
 		if( in_category( 'las-trampas' ) )  {
 			$location = 'at Las Trampas ';
@@ -61,7 +62,7 @@ function pacific_filter_wp_title( $title, $sep ) {
 			$location = 'at Mount Diablo ';
 		}
 	}
-
+	*/
 	return $activity . $title . $location;
 }
 add_filter( 'wp_title', 'pacific_filter_wp_title', 10, 2 );
